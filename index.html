@@ -134,8 +134,21 @@ In the following figure, the size of the nodes are shown with respect to its deg
 <a id="unsupervised-learning" class="anchor" href="#unsupervised-learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unsupervised Learning</h3>
 
 <p>Unsupervised learning plays a major role in the detection of communities in social networks. A common used measure is the modularity of a network which based its calculation on the total number of edges in the group and the expected number of edges in the group. However, this method is computationally very expensive because it considers all edges. Hence, there are algorithms developed that will optimally find the solution using a smaller number of sets. In Gephi, the Louvain method is used and in R, many other algorithms are used.
-An inherent difficulty with this type of analysis is that nodes in social networks can belong to multiple communities, but this type of clustering only allows each node to belong to one community. Using another package in R: Linkcomm, we can place different nodes into multiple communities. This analysis is shown in the following two figures. 
-<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_11_2_1.png?raw=true" alt="Link Communities">
+An inherent difficulty with this type of analysis is that nodes in social networks can belong to multiple communities, but this type of clustering only allows each node to belong to one community. Using another package in R: Linkcomm, we can place different nodes into multiple communities. 
+The code and the analysis is shown below: </p>
+
+<pre><code>library(subgraphMining)
+library(igraph0)
+library(linkcomm)
+Ambrose &lt;- read.graph("C:/Users/Ambrose/Desktop/Courses/Bana 7047/Project/data/Facebook.gml",format=c("gml"))
+Ambrose.el &lt;- get.edgelist(Ambrose)
+Ambrose.lc &lt;- getLinkCommunities(Ambrose.el,directed = FALSE,  hcmethod = "single")
+fgreedy&lt;-fastgreedy.community(Ambrose,merges=TRUE, modularity=TRUE)
+dendPlot(fgreedy)
+plot(Ambrose, vertex.color=membership(fgreedy),vertex.size=2, vertex.label.font=0.2, vertex.label.color=membership(fgreedy))
+</code></pre>
+
+<p><img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_11_2_1.png?raw=true" alt="Link Communities">
 <img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_11_2_2.png?raw=true" alt="Fig-11.2.2"></p>
 
 <h3>
@@ -231,8 +244,9 @@ plot(gof.deg.fb.model.ed.tr)
 </code></pre>
 
 <p><img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_12_2_1.png?raw=true" alt="Fig 12.2.1">
-<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_12_2_2.png?raw=true" alt="Fig 12.2.2">
-The goodness-of-fit diagnostics of the model shows how the observed and distribution of simulated networks compare with each other. The figures below contain the observed network’s statistics plotted in bold while the simulated networks box-plot distribution is plotted in gray. The observed network is contained in the simulated distribution of networks for the most part</p>
+<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_12_2_2.png?raw=true" alt="Fig 12.2.2"></p>
+
+<p>The goodness-of-fit diagnostics of the model shows how the observed and distribution of simulated networks compare with each other. The figures below contain the observed network’s statistics plotted in bold while the simulated networks box-plot distribution is plotted in gray. The observed network is contained in the simulated distribution of networks for the most part.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Inquisitive-Geek/Social-Network-Analysis">Social Network Analysis</a> is maintained by <a href="https://github.com/Inquisitive-Geek">Inquisitive-Geek</a>.</span>
