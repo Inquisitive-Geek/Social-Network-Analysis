@@ -210,11 +210,18 @@ fb.model.ed.tr.1 &lt;- ergm(fb ~ edges + triangle + nodematch("sex") + nodematch
 
 
 
-
-gof.deg.fb.model.ed.tr &lt;- gof(fb.model.ed.tr~degree)
 </code></pre>
 
 <p><img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Table%20Model%20Comparison.PNG?raw=true" alt="Table"></p>
+
+<p>A comparison of these models have been done to decide the best model. The edge and triangle based model has the highest likelihood and lowest AIC and BIC values. The GWESP based model with degree 1 term has the next best values. </p>
+
+<pre><code>mcmc.diagnostics(fb.model.ed.tr.1)
+</code></pre>
+
+<p><img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_12_1_1.png?raw=true" alt="Fig 12.1.1">
+<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_12_1_2.png?raw=true" alt="Fig 12.1.2">
+The MCMC diagnostics of the model which show how the error for each of the terms are modeled show that the GWESP based model with degree 1 term has the terms normally distributed while the edge and triangle based model does not. This mean that the GWESP model captures the network better and hence it is chosen.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Inquisitive-Geek/Social-Network-Analysis">Social Network Analysis</a> is maintained by <a href="https://github.com/Inquisitive-Geek">Inquisitive-Geek</a>.</span>
