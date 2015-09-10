@@ -220,8 +220,19 @@ fb.model.ed.tr.1 &lt;- ergm(fb ~ edges + triangle + nodematch("sex") + nodematch
 </code></pre>
 
 <p><img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_12_1_1.png?raw=true" alt="Fig 12.1.1">
-<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_12_1_2.png?raw=true" alt="Fig 12.1.2">
-The MCMC diagnostics of the model which show how the error for each of the terms are modeled show that the GWESP based model with degree 1 term has the terms normally distributed while the edge and triangle based model does not. This mean that the GWESP model captures the network better and hence it is chosen.</p>
+<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_12_1_2.png?raw=true" alt="Fig 12.1.2"></p>
+
+<p>The MCMC diagnostics of the model which show how the error for each of the terms are modeled show that the GWESP based model with degree 1 term has the terms normally distributed while the edge and triangle based model does not. This mean that the GWESP model captures the network better and hence it is chosen.</p>
+
+<pre><code>gof.fb.model.ed.tr &lt;- gof(fb.model.ed.tr)
+plot(gof.fb.model.ed.tr)
+gof.deg.fb.model.ed.tr &lt;- gof(fb.model.ed.tr~degree)
+plot(gof.deg.fb.model.ed.tr)
+</code></pre>
+
+<p><img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_12_2_1.png?raw=true" alt="Fig 12.2.1">
+<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_12_2_2.png?raw=true" alt="Fig 12.2.2">
+The goodness-of-fit diagnostics of the model shows how the observed and distribution of simulated networks compare with each other. The figures below contain the observed network’s statistics plotted in bold while the simulated networks box-plot distribution is plotted in gray. The observed network is contained in the simulated distribution of networks for the most part</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Inquisitive-Geek/Social-Network-Analysis">Social Network Analysis</a> is maintained by <a href="https://github.com/Inquisitive-Geek">Inquisitive-Geek</a>.</span>
