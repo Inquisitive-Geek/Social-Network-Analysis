@@ -55,7 +55,30 @@ Degree - The total number of edges connected to a node in the network</p>
 <p>The figure below shows a node which acts as a significant connection between the two groups of Facebook friends. This person plays a vital role and influences the common posts that the different user groups can find in their notifications. Studying this node further can help analyze the user behavior. 
 <img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_7_2.png?raw=true" alt="FB Network with important node highlighted"></p>
 
-<p>Based on the Facebook network, we can understand the distribution of the user’s friends. The people who play important roles in the network based on the number of mutual friends, friends who play the role of intermittent connections between different communities. This information affects the newsfeed of the user, information that will be accessible by the user and mutual friends’ suggestions.</p>
+<p>Based on the Facebook network, we can understand the distribution of the user’s friends. The people who play important roles in the network based on the number of mutual friends, friends who play the role of intermittent connections between different communities. This information affects the news feed of the user, information that will be accessible by the user and mutual friends’ suggestions.</p>
+
+<h3>
+<a id="word-adjacencies" class="anchor" href="#word-adjacencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word Adjacencies</h3>
+
+<p>We explored the common adjectives and nouns in the novel "David Copperfield" by Charles Dickens and created an adjacency network. The attributes in the dataset include node and edge descriptions.
+The node descriptions are as follows:</p>
+
+<ul>
+<li>Nodes - The noun or adjective commonly used in the book</li>
+<li>Id - Id is a variable that uniquely identifies the nodes on the network</li>
+<li>Label - Label is the attribute which defines how the node is labelled on the network</li>
+<li>Value - Indicates if the work is a noun or an adjective. 0: Adjective, 1: Noun
+The edge descriptions are as follows:</li>
+<li>Source - Indicates the node that acts as the source for the edge</li>
+<li>Target - Indicates the node that acts as the target for the edge</li>
+<li>Type - Specifies the type of the edge: Directed</li>
+<li>Id - Id is a variable that uniquely identifies the edge on the network<br>
+</li>
+<li>Weight - The weight of an edge. In this dataset, each edge has an equal weight
+Since the dataset is directed, every node has an in-degree and an out-degree where in-degree is the number of words that have the current word as its predecessor and out-degree is the number of words that have the current word as its successor. The edge has a source and target indicating which node is the predecessor and which node is the successor for that connection. </li>
+</ul>
+
+<p>The image on the left in Figure 8.1 indicates the distribution of the commonly used nouns and adjectives in the book. The nodes in red are adjectives and the nodes in blue are nouns. The image on the left gives more perspective as the size of the nodes depend on the in-degree and the out-degree. The nodes that is connected to many other nodes is indicated with a size bigger than the node that is less widely used. We can study these nodes further.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Inquisitive-Geek/Social-Network-Analysis">Social-network-analysis</a> is maintained by <a href="https://github.com/Inquisitive-Geek">Inquisitive-Geek</a>.</span>
