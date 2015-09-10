@@ -143,6 +143,79 @@ An inherent difficulty with this type of analysis is that nodes in social networ
 
 <p>The statnet package in R has been used to do build ERGM models from the Facebook dataset. The models have been created under several parameter constraints leading to different models. </p>
 
+<pre><code>install.packages("statnet")
+install.packages("igraph")
+install.packages("intergraph")
+library(statnet)
+library(igraph)
+library(intergraph)
+
+#Reading the graph
+fbAarti &lt;- read.graph(file = "Aart_FB.gml", format = "gml")
+
+#Converting the file to a network file
+fb &lt;- asNetwork(fbAarti)
+plot(fb)
+summary(fb)
+
+#Mixing Matrices based on attribute names
+mixingmatrix(fb, "locale")
+mixingmatrix(fb, "agerank")
+mixingmatrix(fb, "label")
+mixingmatrix(fb, "sex")
+
+#Network components
+table(component.dist(fb)$csize)
+network.size(fb)
+
+#Erdos-Renyi model
+fb.model.er &lt;- ergm(fb~edges)
+summary(fb.model.er)
+fb.model.er$mle.lik
+
+#Assortative mixing edge model
+fb.model.assor.2 &lt;- ergm(fb~edges + nodematch("locale") + nodematch("sex"))
+summary(fb.model.assor.2)
+fb.model.assor.2$mle.lik
+
+#Simulate the network
+sim.assor &lt;- simulate(fb.model.assor.2, burnin = 1e+6, verbose = TRUE, seed = 9)
+mixingmatrix(sim.assor, "locale")
+mixingmatrix(sim.assor, "sex")
+
+#Network components
+table(component.dist(fb)$csize)
+network.size(fb)
+
+#Degree distribution
+summary(fb ~ degree(0:120))
+summary(sim.assor ~ degree(0:120))
+
+
+c(fb = summary(fb ~ triangle), sim.assor = summary(sim.assor ~ triangle))
+
+fb.model.ed.tr &lt;- ergm(fb ~ edges + triangle, maxit = 4, control.ergm =  control.ergm(seed = 9), verbose = TRUE)
+
+summary(fb.model.ed.tr)
+fb.model.ed.tr$mle.lik
+
+# GWESP model with assortative fields
+fb.gwesp &lt;- ergm(fb ~ edges + nodematch("sex") + nodematch("locale") + gwesp(0.25, fixed = TRUE), 
+               MCMCsamplesize = 10000, maxit = 4, verbose = TRUE, 
+               control = control.ergm(steplength = 0.25), seed = 9, parallel = 4)
+
+fb.model.ed.tr.1 &lt;- ergm(fb ~ edges + triangle + nodematch("sex") + nodematch("locale") + degree(1),
+                       maxit = 4, MCMCsamplesize = 20000, control.ergm =  control.ergm(seed = 9, MCMC.interval=500), 
+                       calc.mcmc.se = FALSE, parallel = 4, verbose = TRUE)
+
+
+
+
+gof.deg.fb.model.ed.tr &lt;- gof(fb.model.ed.tr~degree)
+</code></pre>
+
+<p><img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Table%20Model%20Comparison.PNG?raw=true" alt="Table"></p>
+
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Inquisitive-Geek/Social-Network-Analysis">Social Network Analysis</a> is maintained by <a href="https://github.com/Inquisitive-Geek">Inquisitive-Geek</a>.</span>
 
