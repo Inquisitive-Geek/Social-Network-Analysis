@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Social-network-analysis by Inquisitive-Geek</title>
+    <title>Social Network Analysis by Inquisitive-Geek</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -11,7 +11,7 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">Social-network-analysis</h1>
+      <h1 class="project-name">Social Network Analysis</h1>
       <h2 class="project-tagline">Social Network Analysis using Gephi &amp; R</h2>
       <a href="https://github.com/Inquisitive-Geek/Social-Network-Analysis" class="btn">View on GitHub</a>
       <a href="https://github.com/Inquisitive-Geek/Social-Network-Analysis/zipball/master" class="btn">Download .zip</a>
@@ -85,8 +85,61 @@ The following image gives more perspective as the size of the nodes depend on th
 The figure below shows that the adjectives “little” and “old” are the two commonly used adjectives that were highlighted in the previous figure. Gephi seems to be a pretty powerful tool to visualize data. 
 <img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_8_2.png?raw=true" alt="Word adjacencies"></p>
 
+<h3>
+<a id="books-about-us-politics" class="anchor" href="#books-about-us-politics" aria-hidden="true"><span class="octicon octicon-link"></span></a>Books about US Politics</h3>
+
+<p>This dataset consists of a network of books about US politics published around the time of the 2004 presidential election and sold by the online bookseller Amazon.com. Edges between books represent frequent co-purchasing of books by the same buyers. The dataset include nodes and edges. The node attributes are as follows:</p>
+
+<ul>
+<li>Node - The name of the book</li>
+<li>Id - Id is a variable that uniquely identifies the nodes on the network</li>
+<li>Label - Label is the attribute which defines how the node is labelled on the network</li>
+<li>Value - Indicates the category of the book: liberal(l), neutral(n) or conservative(c) 
+The edge attributes are as follows:</li>
+<li>Source - Indicates the node that acts as the source for the edge</li>
+<li>Target - Indicates the node that acts as the target for the edge</li>
+<li>Type - Specifies the type of the edge: UnDirected</li>
+<li>Id - Id is a variable that uniquely identifies the edge on the network<br>
+</li>
+<li>Weight - The weight of every edge. In this dataset, every edge has an equal weight of 1
+The below figure shows the division of the political books sold by Amazon in a particular period into three categories. The nodes in blue are books on conservatives, the nodes in green are books on liberals and the nodes in red are neutral. The network indicates the tendency of a buyer to buy the same kind of the book is high but there are a few inter-linking books that indicate a different trend.
+<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_9_1.png?raw=true" alt="Fig 9.1">
+The following figure shows the books that a user purchased along with “Surprise, Security and the Americal Experience”. We see that buyers have an equal tendency to purchase a conservative or a liberal book along with this book. 
+<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_9_2.png?raw=true" alt="Fig 9.2">
+</li>
+</ul>
+
+<h3>
+<a id="political-blogs" class="anchor" href="#political-blogs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Political Blogs</h3>
+
+<p>A directed network of hyperlinks between weblogs on US politics, recorded in 2005 by Adamic and Glance. The node attributes of the data are as follows:
+Nodes - The URL of the blog
+Id - Id is a variable that uniquely identifies the nodes on the network
+Label - Label is the attribute which defines how the node is labelled on the network
+Value - 0: left or liberal political parties, 1: right or conservative parties 
+Source - Specifies the source of the blog. Example: Blogarama
+The edge attributes are given below:
+Source - Indicates the node that acts as the source for the edge
+Target - Indicates the node that acts as the target for the edge
+Type - Specifies the type of the edge: Directed
+Id - Id is a variable that uniquely identifies the edge on the network<br>
+Weight - The weight of every edge. In this dataset, every edge has an equal weight of 1</p>
+
+<p>The Political blogs considered in the dataset are written around the 2004 presidential election.  These blogs distinguished based on political leaning. The two kinds of blogs include left or liberal and right or conservative. Analysis of Gephi network indicated the type and source of the blogs. The web crawls from one political blog to another are also considered and these are depicted by the edges in the graph.  In the below figure, the left or liberal blogs are indicated in red and the and right or conservative are shown in blue. We can see that a person is more likely to read a similar kind of a blog rather than switching between liberal and conservative. The graph also shows certain blogs which link these two groups. Such blogs will be considered for further analysis.
+<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_10_1.png?raw=true" alt="Fig-10.1">
+In the following figure, the size of the nodes are shown with respect to its degree. The highlighted nodes indicate that users have traversed to this blog from other political blogs more often compared to other blogs. 
+<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_10_2.png?raw=true" alt="Fig 10.2"></p>
+
+<h3>
+<a id="unsupervised-learning" class="anchor" href="#unsupervised-learning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unsupervised Learning</h3>
+
+<p>Unsupervised learning plays a major role in the detection of communities in social networks. A common used measure is the modularity of a network which based its calculation on the total number of edges in the group and the expected number of edges in the group. However, this method is computationally very expensive because it considers all edges. Hence, there are algorithms developed that will optimally find the solution using a smaller number of sets. In Gephi, the Louvain method is used and in R, many other algorithms are used.
+An inherent difficulty with this type of analysis is that nodes in social networks can belong to multiple communities, but this type of clustering only allows each node to belong to one community. Using another package in R: Linkcomm, we can place different nodes into multiple communities. This analysis is shown in the following two figures. 
+<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_11_2_1.png?raw=true" alt="Link Communities">
+<img src="https://github.com/Inquisitive-Geek/Social-Network-Analysis/blob/master/Fig_11_2_2.png?raw=true" alt="Fig-11.2.2"></p>
+
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/Inquisitive-Geek/Social-Network-Analysis">Social-network-analysis</a> is maintained by <a href="https://github.com/Inquisitive-Geek">Inquisitive-Geek</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/Inquisitive-Geek/Social-Network-Analysis">Social Network Analysis</a> is maintained by <a href="https://github.com/Inquisitive-Geek">Inquisitive-Geek</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
